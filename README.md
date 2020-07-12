@@ -22,7 +22,9 @@
 
 ## What is it?
 
-This tool allows you to check if an email address exists without sending any email. It is a TypeScript wrapper around the [Reacher Email Verification API](https://reacher.email). Reacher is free for personal use, and the API token is optional, but in this case the requests will be rate-limited.
+This tool allows you to check if an email address exists without sending any email.
+
+It is a TypeScript wrapper around the [Reacher Email Verification API](https://reacher.email). Reacher is free for personal use, and the API token is optional, but in this case the requests will be rate-limited.
 
 ## Usage
 
@@ -42,7 +44,7 @@ reacher.checkEmail({ to_email: 'someone@gmail.com' }).then(console.log); // Outp
 
 ## 📚 [See Full Documentation](./docs)
 
-## What Does This Tool Check?
+## What Does Reacher Check?
 
 | Included? | Feature                                       | Description                                                                                                                     | JSON field               |
 | --------- | --------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------- | ------------------------ |
@@ -57,7 +59,7 @@ reacher.checkEmail({ to_email: 'someone@gmail.com' }).then(console.log); // Outp
 | ✅        | **Catch-all address**                         | Is this email address a [catch-all](https://debounce.io/blog/help/what-is-a-catch-all-or-accept-all/) address?                  | `smtp.is_catch_all`      |
 | ✅        | **Role account validation**                   | Is the email address a well-known role account?                                                                                 | `misc.is_role_account`   |
 
-## ✈️ JSON Output
+## JSON Output
 
 The output will be a JSON with the below format, the fields should be self-explanatory. For `someone@gmail.com` (note that it is disabled by Gmail), here's the exact output:
 
@@ -96,7 +98,7 @@ The output will be a JSON with the below format, the fields should be self-expla
 
 You can also take a look at the [OpenAPIv3 specification](https://reacher.email/docs#operation/post-check-email) of this JSON object.
 
-## 📜 License
+## License
 
 The source code is available under the Apache-2.0 license. See the [LICENSE](./LICENSE) file for more info.
 
