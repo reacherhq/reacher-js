@@ -1,4 +1,4 @@
-[@reacherhq/api](../globals.md) › ["types"](../modules/_types_.md) › [components](_types_.components.md)
+[@reacherhq/api](../README.md) › [Globals](../globals.md) › ["src/types"](../modules/_src_types_.md) › [components](_src_types_.components.md)
 
 # Interface: components
 
@@ -13,7 +13,7 @@ Do not make direct changes to the file.
 
 ### Properties
 
-* [schemas](_types_.components.md#schemas)
+* [schemas](_src_types_.components.md#schemas)
 
 ## Properties
 
@@ -21,7 +21,7 @@ Do not make direct changes to the file.
 
 • **schemas**: *object*
 
-Defined in types.ts:7
+*Defined in [src/types.ts:7](https://github.com/reacherhq/reacher-js/blob/1bb9589/src/types.ts#L7)*
 
 #### Type declaration:
 
