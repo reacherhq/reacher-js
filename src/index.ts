@@ -3,8 +3,13 @@ import axios, { AxiosRequestConfig } from 'axios';
 import pkgJson from '../package.json';
 import { components } from './types';
 
-export type CheckEmailInput = components['schemas']['CheckEmailInput'];
-export type CheckEmailOutput = components['schemas']['CheckEmailOutput'];
+// These small type hacks are for generating nice documentation.
+type ICheckEmailInput = components['schemas']['CheckEmailInput'];
+type ICheckEmailOutput = components['schemas']['CheckEmailOutput'];
+// eslint-disable-next-line @typescript-eslint/no-empty-interface
+export interface CheckEmailInput extends ICheckEmailInput {}
+// eslint-disable-next-line @typescript-eslint/no-empty-interface
+export interface CheckEmailOutput extends ICheckEmailOutput {}
 
 /**
  * Reacher's backend base URL.

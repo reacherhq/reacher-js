@@ -13,7 +13,7 @@
 	"scripts": {
 		"build": "rimraf lib && tsc -p tsconfig.build.json",
 		"docs": "typedoc",
-		"generate:typings": "swagger-to-ts backend/openapi.json -o src/types.ts",
+		"generate:typings": "swagger-to-ts backend/openapi.json -o src/types.ts --prettier-config ./prettierrc.js",
 		"lint": "tsc --noEmit && eslint . --ext .ts"
 	},
 	"dependencies": {
