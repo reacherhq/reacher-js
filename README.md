@@ -20,9 +20,9 @@
 
 <br /><br />
 
-This tool is a TypeScript wrapper around the [Reacher Email Verification API](https://reacher.email). Reacher is free for personal use, and the API token is optional, but the requests will be rate-limited.
+## What is it?
 
-<br /><br />
+This tool allows you to check if an email address exists without sending any email. It is a TypeScript wrapper around the [Reacher Email Verification API](https://reacher.email). Reacher is free for personal use, and the API token is optional, but in this case the requests will be rate-limited.
 
 ## Usage
 
