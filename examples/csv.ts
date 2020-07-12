@@ -33,11 +33,7 @@ fs.createReadStream('./input_emails.csv')
 	// When we finish processing the whole CSV file, we send all the
 	// requests to Reacher.
 	.on('end', () => {
-		Promise.all(
-			emailsToCheck.map((to_email) =>
-				reacher({ to_email }).then((res) => res)
-			)
-		)
+		Promise.all(emailsToCheck.map((to_email) => reacher({ to_email })))
 			// Once we have the results, we just print them.
 			.then((results) => console.log(JSON.stringify(results)))
 			.catch(console.error);
