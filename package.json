@@ -1,0 +1,27 @@
+{
+	"name": "@reacherhq/api",
+	"version": "0.2.5",
+	"author": "Amaury Martiny <amaury.martiny@protonmail.com>",
+	"description": "Check if an email address exists without sending any email.",
+	"license": "AGPL-3.0",
+	"main": "lib/",
+	"private": false,
+	"repository": "https://github.com/reacherhq/reacher-js",
+	"scripts": {
+		"docs": "typedoc",
+		"generate:typings": "swagger-to-ts backend/openapi.json -o src/types.ts",
+		"lint": "tsc --noEmit && eslint . --ext .ts"
+	},
+	"dependencies": {
+		"axios": "^0.19.2"
+	},
+	"devDependencies": {
+		"@amaurymartiny/config": "^1.3.1",
+		"@manifoldco/swagger-to-ts": "^2.0.0",
+		"standard-version": "^8.0.0",
+		"typedoc": "^0.17.8",
+		"typedoc-plugin-markdown": "^2.3.1",
+		"typedoc-plugin-no-inherit": "^1.1.10",
+		"typescript": "^3.9.5"
+	}
+}

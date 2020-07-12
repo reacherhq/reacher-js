@@ -1,0 +1,6 @@
+{
+	"compilerOptions": {
+		"resolveJsonModule": true
+	},
+	"extends": "./node_modules/@amaurymartiny/tsconfig/tsconfig"
+}
