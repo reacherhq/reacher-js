@@ -1,6 +1,6 @@
 <br /><br />
 
-<h1 align="center"><code>@reacherhq/api</code></h1>
+<h1 align="center">@reacherhq/api</h1>
 <h4 align="center">Check if an email address exists without sending any email.</h4>
 
 <p align="center">
@@ -22,9 +22,11 @@
 
 This tool is a TypeScript wrapper around the [Reacher Email Verification API](https://reacher.email). Reacher is free for personal use, and the API token is optional, but the requests will be rate-limited.
 
+<br /><br />
+
 ## Usage
 
-Using `@reacherhq/api` is very easy: first install then package.
+Install the package:
 
 ```bash
 yarn add @reacherhq/api # Or npm install @reacherhq/api
@@ -35,7 +37,7 @@ Then open up a JavaScript file and use:
 ```typescript
 import { reacher } from '@reacherhq/api';
 
-reacher({ to_email: 'someone@gmail.com' }).then(console.log); // Output will be the JSON described below.
+reacher.checkEmail({ to_email: 'someone@gmail.com' }).then(console.log); // Output will be the JSON described below.
 ```
 
 ## 📚 [See Full Documentation](./docs)

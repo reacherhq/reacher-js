@@ -38,7 +38,7 @@ const REACHER_BACKEND_URL = `https://ssfy.sh/amaurymartiny/reacher@${
  * still usable, but heavy rate-limiting will be applied.
  * @param config - Additional configuration to be passed to the axios request.
  */
-export function reacher(
+function checkEmail(
 	input: CheckEmailInput,
 	apiToken?: string,
 	config: AxiosRequestConfig = {}
@@ -60,3 +60,7 @@ export function reacher(
 		})
 		.then(({ data }) => data);
 }
+
+export const reacher = {
+	checkEmail,
+};
