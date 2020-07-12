@@ -102,6 +102,8 @@ You can also take a look at the [OpenAPIv3 specification](https://reacher.email/
 
 The source code is available under the Apache-2.0 license. See the [LICENSE](./LICENSE) file for more info.
 
-## 🌯 Sponsor me a Falafel Wrap [![Sponsor](https://img.shields.io/badge/Github%20Sponsors-%E2%9D%A4%EF%B8%8F-white)](https://github.com/sponsors/amaurymartiny/)
+## 🌯 Sponsor me a Falafel Wrap
 
 I don't drink coffee, but consider sponsoring me with a wrap from my favorite Falafel dealer! 👉 [See which one.](https://github.com/sponsors/amaurymartiny/)
+
+[![Sponsor](https://img.shields.io/badge/Github%20Sponsors-%E2%9D%A4%EF%B8%8F-white)](https://github.com/sponsors/amaurymartiny/)
