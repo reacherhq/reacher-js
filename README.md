@@ -24,7 +24,7 @@
 
 This tool allows you to check if an email address exists without sending any email.
 
-It is a TypeScript wrapper around the [Reacher Email Verification API](https://reacher.email). Reacher is a 100% open-source SaaS, written in Rust. It's also free for personal use, and the API token in `@reacherhq/api` is optional, but in this case the requests will be rate-limited.
+It is a thin TypeScript wrapper around the [Reacher Email Verification API](https://reacher.email). Reacher is a 100% open-source SaaS, written in Rust. It's also free for personal use, and the API token in `@reacherhq/api` is optional, but in this case the requests will be rate-limited.
 
 ## Usage
 
