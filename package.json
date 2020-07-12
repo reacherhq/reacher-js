@@ -3,6 +3,9 @@
 	"version": "0.1.0",
 	"author": "Amaury Martiny <amaury.martiny@protonmail.com>",
 	"description": "Check if an email address exists without sending any email.",
+	"files": [
+		"/lib"
+	],
 	"license": "AGPL-3.0",
 	"main": "lib/",
 	"private": false,
