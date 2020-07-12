@@ -11,11 +11,3 @@ jobs:
               run: |
                   yarn install
                   yarn lint
-    test:
-        runs-on: ubuntu-latest
-        steps:
-            - uses: actions/checkout@v2
-            - name: Run yarn test
-              run: |
-                  yarn install
-                  yarn test
