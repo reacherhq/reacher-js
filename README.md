@@ -1,6 +1,6 @@
 <br /><br />
 
-<h1 align="center">check-if-email-exists</h1>
+<h1 align="center"><code>@reacherhq/api</code></h1>
 <h4 align="center">Check if an email address exists without sending any email.</h4>
 
 <p align="center">
@@ -20,29 +20,17 @@
 
 <br /><br />
 
-## 👉 Live Demo: https://reacher.email
+This tool is a TypeScript wrapper around the [Reacher Email Verification API](https://reacher.email). Reacher is free for personal use, and the API token is optional, but the requests will be rate-limited.
 
-This tool is a TypeScript wrapper around the Reacher API. Reacher is free for personal use, and the API token is optional, but the requests will be rate-limited.
+## Usage
 
-## What Does This Tool Check?
+Using `@reacherhq/api` is very easy: first install then package.
 
-| Included?                         | Feature                                       | Description                                                                                                                     | JSON field               |
-| --------------------------------- | --------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------- | ------------------------ |
-| ✅                                | **Email reachability**                        | How confident are we in sending an email to this address? Can be one of `safe`, `risky`, `invalid` or `unknown`.                | `is_reachable`           |
-| ✅                                | **Syntax validation**                         | Is the address syntactically valid?                                                                                             | `syntax.is_valid_syntax` |
-| ✅                                | **DNS records validation**                    | Does the domain of the email address have valid MX DNS records?                                                                 | `mx.accepts_mail`        |
-| ✅                                | **Disposable email address (DEA) validation** | Is the address provided by a known [disposable email address](https://en.wikipedia.org/wiki/Disposable_email_address) provider? | `misc.is_disposable`     |
-| ✅                                | **SMTP server validation**                    | Can the mail exchanger of the email address domain be contacted successfully?                                                   | `smtp.can_connect_smtp`  |
-| ✅                                | **Email deliverability**                      | Is an email sent to this address deliverable?                                                                                   | `smtp.is_deliverable`    |
-| ✅                                | **Mailbox disabled**                          | Has this email address been disabled by the email provider?                                                                     | `smtp.is_disabled`       |
-| ✅                                | **Full inbox**                                | Is the inbox of this mailbox full?                                                                                              | `smtp.has_full_inbox`    |
-| ✅                                | **Catch-all address**                         | Is this email address a [catch-all](https://debounce.io/blog/help/what-is-a-catch-all-or-accept-all/) address?                  | `smtp.is_catch_all`      |
-| ✅                                | **Role account validation**                   | Is the email address a well-known role account?                                                                                 | `misc.is_role_account`   |
-| check-if-email-exists/issues/289) |
+```bash
+yarn add @reacherhq/api # Or npm install @reacherhq/api
+```
 
-## Try It Yourself
-
-Using `@reacherhq/api` is very easy:
+Then open up a JavaScript file and use:
 
 ```typescript
 import { reacher } from '@reacherhq/api';
@@ -50,7 +38,22 @@ import { reacher } from '@reacherhq/api';
 reacher({ to_email: 'someone@gmail.com' }).then(console.log); // Output will be the JSON described below.
 ```
 
-### [See Full Documentation](./docs)
+## 📚 [See Full Documentation](./docs)
+
+## What Does This Tool Check?
+
+| Included? | Feature                                       | Description                                                                                                                     | JSON field               |
+| --------- | --------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------- | ------------------------ |
+| ✅        | **Email reachability**                        | How confident are we in sending an email to this address? Can be one of `safe`, `risky`, `invalid` or `unknown`.                | `is_reachable`           |
+| ✅        | **Syntax validation**                         | Is the address syntactically valid?                                                                                             | `syntax.is_valid_syntax` |
+| ✅        | **DNS records validation**                    | Does the domain of the email address have valid MX DNS records?                                                                 | `mx.accepts_mail`        |
+| ✅        | **Disposable email address (DEA) validation** | Is the address provided by a known [disposable email address](https://en.wikipedia.org/wiki/Disposable_email_address) provider? | `misc.is_disposable`     |
+| ✅        | **SMTP server validation**                    | Can the mail exchanger of the email address domain be contacted successfully?                                                   | `smtp.can_connect_smtp`  |
+| ✅        | **Email deliverability**                      | Is an email sent to this address deliverable?                                                                                   | `smtp.is_deliverable`    |
+| ✅        | **Mailbox disabled**                          | Has this email address been disabled by the email provider?                                                                     | `smtp.is_disabled`       |
+| ✅        | **Full inbox**                                | Is the inbox of this mailbox full?                                                                                              | `smtp.has_full_inbox`    |
+| ✅        | **Catch-all address**                         | Is this email address a [catch-all](https://debounce.io/blog/help/what-is-a-catch-all-or-accept-all/) address?                  | `smtp.is_catch_all`      |
+| ✅        | **Role account validation**                   | Is the email address a well-known role account?                                                                                 | `misc.is_role_account`   |
 
 ## ✈️ JSON Output
 
@@ -95,7 +98,7 @@ You can also take a look at the [OpenAPIv3 specification](https://reacher.email/
 
 The source code is available under the Apache-2.0 license. See the [LICENSE](./LICENSE) file for more info.
 
-## 🌯 Falafel Wrap
+## 🌯 Sponsor me a Falafel Wrap
 
 [![Sponsor](https://img.shields.io/badge/Github%20Sponsors-%E2%9D%A4%EF%B8%8F-white)](https://github.com/sponsors/amaurymartiny/)
 
