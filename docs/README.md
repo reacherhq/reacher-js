@@ -46,7 +46,7 @@ import { checkEmail } from '@reacherhq/api';
 checkEmail({ to_email: 'someone@gmail.com' }).then(console.log); // Output will be the JSON described below.
 ```
 
-## 📚 [See Full Documentation](./docs/modules/_index_.md)
+## 📚 [See Full Documentation](https://github.com/reacherhq/reacher-js/blob/master/docs/modules/_src_index_.md#functions-1)
 
 ## What Does Reacher Check?
 

@@ -19,7 +19,7 @@
 
 ▸ **checkEmail**(`input`: [CheckEmailInput](../interfaces/_src_index_.checkemailinput.md), `apiToken?`: undefined | string, `config`: AxiosRequestConfig): *Promise‹[CheckEmailOutput](../interfaces/_src_index_.checkemailoutput.md)›*
 
-*Defined in [src/index.ts:30](https://github.com/reacherhq/reacher-js/blob/89a5e5c/src/index.ts#L30)*
+*Defined in [src/index.ts:30](https://github.com/reacherhq/reacher-js/blob/527ae93/src/index.ts#L30)*
 
 Perform an email verification on the input email address.
 

@@ -21,7 +21,7 @@ Do not make direct changes to the file.
 
 • **schemas**: *object*
 
-*Defined in [src/types.ts:7](https://github.com/reacherhq/reacher-js/blob/89a5e5c/src/types.ts#L7)*
+*Defined in [src/types.ts:7](https://github.com/reacherhq/reacher-js/blob/527ae93/src/types.ts#L7)*
 
 #### Type declaration:
 
