@@ -1,0 +1,9 @@
+{
+	"compilerOptions": {
+		"declaration": true,
+		"outDir": "./lib",
+		"resolveJsonModule": false
+	},
+	"extends": "./tsconfig",
+	"include": ["src"]
+}
