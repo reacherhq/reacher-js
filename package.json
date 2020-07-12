@@ -8,6 +8,7 @@
 	"private": false,
 	"repository": "https://github.com/reacherhq/reacher-js",
 	"scripts": {
+		"build": "rimraf lib && tsc -p tsconfig.build.json",
 		"docs": "typedoc",
 		"generate:typings": "swagger-to-ts backend/openapi.json -o src/types.ts",
 		"lint": "tsc --noEmit && eslint . --ext .ts"
