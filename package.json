@@ -9,6 +9,9 @@
 	"license": "Apache-2.0",
 	"main": "lib/",
 	"private": false,
+	"publishConfig": {
+		"access": "public"
+	},
 	"repository": "https://github.com/reacherhq/reacher-js",
 	"scripts": {
 		"build": "rimraf lib && tsc -p tsconfig.build.json",
