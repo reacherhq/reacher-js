@@ -43,13 +43,20 @@ export function reacher(
 	apiToken?: string,
 	config: AxiosRequestConfig = {}
 ): Promise<CheckEmailOutput> {
-	return axios.post(`${REACHER_BACKEND_URL}/check_email`, input, {
-		...config,
-		// eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
-		headers: {
-			'Content-Type': 'application/json',
-			Authorization: apiToken,
-			...config.headers,
-		},
-	});
+	// eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
+	const headers: Record<string, string> = {
+		'Content-Type': 'application/json',
+		...config.headers,
+	};
+	if (apiToken) {
+		headers.Authorization = apiToken;
+	}
+
+	return axios
+		.post<CheckEmailOutput>(`${REACHER_BACKEND_URL}/check_email`, input, {
+			...config,
+			// eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
+			headers,
+		})
+		.then(({ data }) => data);
 }
