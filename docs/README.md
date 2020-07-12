@@ -41,9 +41,9 @@ yarn add @reacherhq/api # Or npm install @reacherhq/api
 Then open up a JavaScript file and use:
 
 ```typescript
-import { reacher } from '@reacherhq/api';
+import { checkEmail } from '@reacherhq/api';
 
-reacher.checkEmail({ to_email: 'someone@gmail.com' }).then(console.log); // Output will be the JSON described below.
+checkEmail({ to_email: 'someone@gmail.com' }).then(console.log); // Output will be the JSON described below.
 ```
 
 ## 📚 [See Full Documentation](./docs/modules/_index_.md)
