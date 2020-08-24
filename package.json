@@ -20,7 +20,7 @@
 		"lint": "tsc --noEmit && eslint . --ext .ts"
 	},
 	"dependencies": {
-		"axios": "^0.19.2"
+		"axios": "^0.20.0"
 	},
 	"devDependencies": {
 		"@amaurymartiny/config": "^1.3.1",
