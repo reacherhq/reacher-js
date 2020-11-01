@@ -1,4 +1,6 @@
-[@reacherhq/api](../README.md) › [Globals](../globals.md) › ["src/types"](_src_types_.md)
+**[@reacherhq/api](../README.md)**
+
+> [Globals](../globals.md) / "src/types"
 
 # Module: "src/types"
 

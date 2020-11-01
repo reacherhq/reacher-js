@@ -1,34 +1,52 @@
-[@reacherhq/api](../README.md) › [Globals](../globals.md) › ["src/index"](_src_index_.md)
+**[@reacherhq/api](../README.md)**
+
+> [Globals](../globals.md) / "src/index"
 
 # Module: "src/index"
 
 ## Index
 
-### Interfaces
+### References
 
-* [CheckEmailInput](../interfaces/_src_index_.checkemailinput.md)
-* [CheckEmailOutput](../interfaces/_src_index_.checkemailoutput.md)
+* [CheckBatchOptions](_src_index_.md#checkbatchoptions)
+* [CheckEmailInput](_src_index_.md#checkemailinput)
+* [CheckEmailOutput](_src_index_.md#checkemailoutput)
+* [CheckSingleOptions](_src_index_.md#checksingleoptions)
+* [batchQueue](_src_index_.md#batchqueue)
+* [checkSingle](_src_index_.md#checksingle)
 
-### Functions
+## References
 
-* [checkEmail](_src_index_.md#checkemail)
+### CheckBatchOptions
 
-## Functions
+Re-exports: [CheckBatchOptions](../interfaces/_src_batch_.checkbatchoptions.md)
 
-###  checkEmail
+___
 
-▸ **checkEmail**(`input`: [CheckEmailInput](../interfaces/_src_index_.checkemailinput.md), `apiToken?`: undefined | string, `config`: AxiosRequestConfig): *Promise‹[CheckEmailOutput](../interfaces/_src_index_.checkemailoutput.md)›*
+### CheckEmailInput
 
-*Defined in [src/index.ts:30](https://github.com/reacherhq/reacher-js/blob/527ae93/src/index.ts#L30)*
+Re-exports: [CheckEmailInput](../interfaces/_src_single_.checkemailinput.md)
 
-Perform an email verification on the input email address.
+___
 
-**Parameters:**
+### CheckEmailOutput
 
-Name | Type | Default | Description |
------- | ------ | ------ | ------ |
-`input` | [CheckEmailInput](../interfaces/_src_index_.checkemailinput.md) | - | An object holding the email to be verified, as well as some other configuration parameters to be used during the verification. |
-`apiToken?` | undefined &#124; string | - | Your Reacher's API token. If not passed, then the API is still usable, but heavy rate-limiting will be applied. |
-`config` | AxiosRequestConfig | {} | Additional configuration to be passed to the axios request.  |
+Re-exports: [CheckEmailOutput](../interfaces/_src_single_.checkemailoutput.md)
 
-**Returns:** *Promise‹[CheckEmailOutput](../interfaces/_src_index_.checkemailoutput.md)›*
+___
+
+### CheckSingleOptions
+
+Re-exports: [CheckSingleOptions](../interfaces/_src_single_.checksingleoptions.md)
+
+___
+
+### batchQueue
+
+Re-exports: [batchQueue](_src_batch_.md#batchqueue)
+
+___
+
+### checkSingle
+
+Re-exports: [checkSingle](_src_single_.md#checksingle)

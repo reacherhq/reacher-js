@@ -1,4 +1,6 @@
-[@reacherhq/api](../README.md) › [Globals](../globals.md) › ["src/types"](../modules/_src_types_.md) › [components](_src_types_.components.md)
+**[@reacherhq/api](../README.md)**
+
+> [Globals](../globals.md) / ["src/types"](../modules/_src_types_.md) / components
 
 # Interface: components
 
@@ -17,72 +19,21 @@ Do not make direct changes to the file.
 
 ## Properties
 
-###  schemas
+### schemas
 
-• **schemas**: *object*
+•  **schemas**: { CheckEmailInput: { from_email?: undefined \| string ; hello_name?: undefined \| string ; to_email: string  } ; CheckEmailOutput: { input: string ; is_reachable: components[\"schemas\"][\"Reachable\"] ; misc: components[\"schemas\"][\"MiscDetails\"] \| components[\"schemas\"][\"Error\"] ; mx: components[\"schemas\"][\"MxDetails\"] \| components[\"schemas\"][\"Error\"] ; smtp: components[\"schemas\"][\"SmtpDetails\"] \| components[\"schemas\"][\"Error\"] ; syntax: components[\"schemas\"][\"SyntaxDetails\"]  } ; Error: { message: string ; type: string  } ; MiscDetails: { is_disposable: boolean ; is_role_account: boolean  } ; MxDetails: { accepts_mail: boolean ; records: string[]  } ; Reachable: \"invalid\" \| \"unknown\" \| \"safe\" \| \"risky\" ; SmtpDetails: { can_connect_smtp: boolean ; has_full_inbox: boolean ; is_catch_all: boolean ; is_deliverable: boolean ; is_disabled: boolean  } ; SyntaxDetails: { domain: string ; is_valid_syntax: boolean ; username: string  }  }
 
-*Defined in [src/types.ts:7](https://github.com/reacherhq/reacher-js/blob/527ae93/src/types.ts#L7)*
+*Defined in [src/types.ts:7](https://github.com/reacherhq/reacher-js/blob/904b6c9/src/types.ts#L7)*
 
 #### Type declaration:
 
-* **CheckEmailInput**(): *object*
-
-  * **from_email**? : *undefined | string*
-
-  * **hello_name**? : *undefined | string*
-
-  * **to_email**: *string*
-
-* **CheckEmailOutput**(): *object*
-
-  * **input**: *string*
-
-  * **is_reachable**: *components["schemas"]["Reachable"]*
-
-  * **misc**: *components["schemas"]["MiscDetails"] | components["schemas"]["Error"]*
-
-  * **mx**: *components["schemas"]["MxDetails"] | components["schemas"]["Error"]*
-
-  * **smtp**: *components["schemas"]["SmtpDetails"] | components["schemas"]["Error"]*
-
-  * **syntax**: *components["schemas"]["SyntaxDetails"]*
-
-* **Error**(): *object*
-
-  * **message**: *string*
-
-  * **type**: *string*
-
-* **MiscDetails**(): *object*
-
-  * **is_disposable**: *boolean*
-
-  * **is_role_account**: *boolean*
-
-* **MxDetails**(): *object*
-
-  * **accepts_mail**: *boolean*
-
-  * **records**: *string[]*
-
-* **Reachable**: *"invalid" | "unknown" | "safe" | "risky"*
-
-* **SmtpDetails**(): *object*
-
-  * **can_connect_smtp**: *boolean*
-
-  * **has_full_inbox**: *boolean*
-
-  * **is_catch_all**: *boolean*
-
-  * **is_deliverable**: *boolean*
-
-  * **is_disabled**: *boolean*
-
-* **SyntaxDetails**(): *object*
-
-  * **domain**: *string*
-
-  * **is_valid_syntax**: *boolean*
-
-  * **username**: *string*
+Name | Type | Description |
+------ | ------ | ------ |
+`CheckEmailInput` | { from_email?: undefined \| string ; hello_name?: undefined \| string ; to_email: string  } | Input containing all parameters necessary for an email verification. |
+`CheckEmailOutput` | { input: string ; is_reachable: components[\"schemas\"][\"Reachable\"] ; misc: components[\"schemas\"][\"MiscDetails\"] \| components[\"schemas\"][\"Error\"] ; mx: components[\"schemas\"][\"MxDetails\"] \| components[\"schemas\"][\"Error\"] ; smtp: components[\"schemas\"][\"SmtpDetails\"] \| components[\"schemas\"][\"Error\"] ; syntax: components[\"schemas\"][\"SyntaxDetails\"]  } | The verification result of an email. |
+`Error` | { message: string ; type: string  } | Object describing an error happening during the misc, MX, or SMTP verifications. |
+`MiscDetails` | { is_disposable: boolean ; is_role_account: boolean  } | Miscellaneous information about the email account. |
+`MxDetails` | { accepts_mail: boolean ; records: string[]  } | Object holding the MX details of the mail server. |
+`Reachable` | \"invalid\" \| \"unknown\" \| \"safe\" \| \"risky\" | An enum to describe how confident we are that the recipient address is real: `safe`, `risky`, `invalid` and `unknown`. Check our FAQ to know the meanings of the 4 possibilities: https://www.notion.so/reacherhq/Reacher-FAQ-389d6f51a53749f29d914239613c64eb. |
+`SmtpDetails` | { can_connect_smtp: boolean ; has_full_inbox: boolean ; is_catch_all: boolean ; is_deliverable: boolean ; is_disabled: boolean  } | Verifications performed by connecting to the mail server via SMTP. |
+`SyntaxDetails` | { domain: string ; is_valid_syntax: boolean ; username: string  } | Syntax validation of an email address. |
