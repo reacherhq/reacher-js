@@ -28,3 +28,6 @@ yarn-error.log
 .pnp/
 .pnp.js
 .yarn-integrity
+
+# Text fixtures with real emails
+fixtures

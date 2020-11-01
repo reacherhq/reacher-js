@@ -2,15 +2,19 @@
 
 Here are some examples on how you can use `@reacherhq/api`.
 
-## How to run the examples
+## How to run the example
 
 In this directory, you can use the `ts-node` CLI to run the examples.
 
 ```bash
 cd examples
-../node_modules/.bin/ts-node csv.ts
+../node_modules/.bin/ts-node csv_batch.ts
 ```
 
-## Example #1: CSV
+This will read the `input_emails.csv` file, and output the results into an `output.csv` file.
 
-This example shows how to parse a CSV file, and for all the emails inside this CSV file, run a Reacher email verification.
+If you wish to use your own Reacher API token, pass it in via the `REACHER_API_TOKEN` environment variable.
+
+```bash
+REACHER_API_TOKEN=<your_token> ../node_modules/.bin/ts-node csv_batch.ts
+```

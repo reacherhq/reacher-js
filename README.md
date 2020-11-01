@@ -16,15 +16,18 @@
   <a href="https://david-dm.org/reacherhq/reacher-js">
     <img alt="david-dm" src="https://img.shields.io/david/reacherhq/reacher-js.svg" />
   </a>
+  <a href="https://github.com/sponsors/amaurymartiny">
+  	<img alt="Github Sponsor" src="https://img.shields.io/static/v1?label=Sponsor&message=%E2%9D%A4&logo=GitHub&link=https://github.com/sponsors/amaurymartiny" />
+  </a>
 </p>
 
 <br /><br />
 
 ## What is it?
 
-This tool allows you to check if an email address exists without sending any email.
+Check if an email address exists without sending any email.
 
-It is a thin TypeScript wrapper around the [Reacher Email Verification API](https://reacher.email). Reacher is a 100% open-source SaaS, written in Rust. It's also free for personal use, and the API token in `@reacherhq/api` is optional, but in this case the requests will be rate-limited.
+`@reacher/api` is a thin TypeScript wrapper around the [Reacher Email Verification API](https://reacher.email). Reacher is a 100% open-source SaaS, written in Rust. It's also free for personal use, and the API token in `@reacherhq/api` is optional, but without it the requests will be rate-limited to 50 per month.
 
 ## Usage
 
@@ -34,15 +37,49 @@ Install the package:
 yarn add @reacherhq/api # Or npm install @reacherhq/api
 ```
 
-Then open up a JavaScript file and use:
+Then open there are two ways to use the library: by sending single API requests, or using batch verification.
+
+### Single Email Verification
 
 ```typescript
-import { checkEmail } from '@reacherhq/api';
+import { checkSingle } from '@reacherhq/api';
 
-checkEmail({ to_email: 'someone@gmail.com' }).then(console.log); // Output will be the JSON described below.
+checkSingle(
+	{ to_email: 'someone@gmail.com' },
+	{
+		apiToken: '<YOUR_TOKEN>', // Optional, rate-limited if not provided.
+	}
+).then(console.log); // Output will be the JSON section described below.
 ```
 
-## 📚 [See Full Documentation](https://github.com/reacherhq/reacher-js/blob/master/docs/modules/_src_index_.md#functions-1)
+### Batch Email Verification
+
+```typescript
+import { batchQueue } from '@reacherhq/api';
+
+const q = batchQueue({
+	// Optional, rate-limited if not provided.
+	apiToken: '<YOUR_TOKEN>',
+	// Optional, callback to call on each successful verification.
+	onSuccessSingle: (result) => {
+		console.log(
+			`Verified email ${result.input}: the result is ${result.is_reachable}.`
+		);
+	},
+});
+
+// Push some data into the queue. The email verification will start as soon as
+// it's in the queue. The queue has a default concurrency of 100.
+q.push({ to_email: 'someone1@gmail.com' });
+q.push({ to_email: 'someone2@gmail.com' }, { to_email: 'someone3@gmail.com' });
+
+// Perform some action when the queue is drained.
+q.drain(() => {
+	console.log('Finished processing the queue.');
+});
+```
+
+## 📚 [See Full Documentation](https://github.com/reacherhq/reacher-js/blob/master/docs)
 
 ## What Does Reacher Check?
 
@@ -101,9 +138,3 @@ You can also take a look at the [OpenAPIv3 specification](https://reacher.email/
 ## License
 
 The source code is available under the Apache-2.0 license. See the [LICENSE](./LICENSE) file for more info.
-
-## 🌯 Sponsor me a Falafel Wrap
-
-I don't drink coffee, but consider sponsoring me with a wrap from my favorite Falafel dealer! 👉 [See which one.](https://github.com/sponsors/amaurymartiny/)
-
-[![Sponsor](https://img.shields.io/badge/Github%20Sponsors-%E2%9D%A4%EF%B8%8F-white)](https://github.com/sponsors/amaurymartiny/)

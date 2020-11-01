@@ -1,4 +1,4 @@
-import { queue } from 'async';
+import { AsyncQueue, queue } from 'async';
 import { debug } from 'debug';
 
 import {
@@ -14,17 +14,21 @@ const l = debug('reacher:batch');
  * Options for making a batch email verification.
  */
 export interface CheckBatchOptions extends CheckSingleOptions {
+	/**
+	 * Concurrency of the queue.
+	 */
 	concurrency?: number;
 	/**
-	 * Callback to perform on the
+	 * Callback to perform on each single email verification success.
 	 */
 	onSuccessSingle?: (output: CheckEmailOutput) => void;
 }
 
 /**
- * Default number of concurrent API calls.
+ * Default number of concurrent API calls. 100 is a good number to use with
+ * Reacher.
  */
-const DEFAULT_CONCURRENCY = 10;
+const DEFAULT_CONCURRENCY = 100;
 
 /**
  * This function takes an array of emails, and performs batch email
@@ -33,12 +37,14 @@ const DEFAULT_CONCURRENCY = 10;
  *
  * @param inputs - An array of inputs for making email verifications.
  * @param options - Options to pass in to make the api call.
+ *
+ * @returns - Returns an API requests queue, which is an instance of
+ * [QueueObject](https://caolan.github.io/async/v3/docs.html#QueueObject).
  */
-export function checkBatch(
-	inputs: CheckEmailInput[],
+export function batchQueue(
 	options: CheckBatchOptions = {}
-): Promise<void> {
-	l('Processing %d emails.', inputs.length);
+): AsyncQueue<CheckEmailInput> {
+	l('Creating a batch queue.');
 
 	const q = queue<CheckEmailInput>((task, callback) => {
 		checkSingle(task, options)
@@ -51,9 +57,5 @@ export function checkBatch(
 			.catch(callback);
 	}, options.concurrency || DEFAULT_CONCURRENCY);
 
-	// Add emails to the queue.
-	q.push(inputs);
-
-	// Drain the queue.
-	return q.drain();
+	return q;
 }
