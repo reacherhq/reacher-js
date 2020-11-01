@@ -5,7 +5,7 @@
 import csvParse from 'csv-parse';
 import fs from 'fs';
 
-import { checkEmail } from '../src';
+import { checkBatch } from '../src';
 
 const emailsToCheck: string[] = [];
 
@@ -18,11 +18,18 @@ fs.createReadStream('./input_emails.csv')
 	.on('data', (data: string[]) => {
 		emailsToCheck.push(...data);
 	})
-	// When we finish processing the whole CSV file, we send all the
-	// requests to Reacher.
+	// When we finish processing the whole CSV file, we call the `checkBatch`
+	// function.
 	.on('end', () => {
-		Promise.all(emailsToCheck.map((to_email) => checkEmail({ to_email })))
-			// Once we have the results, we just print them.
-			.then((results) => console.log(JSON.stringify(results)))
+		// First, convert emails from `string` to `CheckEmailInput`, which is
+		// an object with a `{"to_email": "<email_to_verify>"}` field.
+		const emailInputs = emailsToCheck.map((email) => ({ to_email: email }));
+
+		// Then, call the `checkBatch` function.
+		checkBatch(emailInputs, {
+			onSuccessSingle: (output) =>
+				console.log(output.input, output.is_reachable),
+		})
+			.then(() => console.log('Finished processing all emails.'))
 			.catch(console.error);
 	});
