@@ -37,9 +37,9 @@ Install the package:
 yarn add @reacherhq/api # Or npm install @reacherhq/api
 ```
 
-Then open there are two ways to use the library: by sending single API requests, or using batch verification.
+There are two ways to use the library: by sending single API requests, or by using batch verification.
 
-### Single Email Verification
+### 1. Single Email Verification
 
 ```typescript
 import { checkSingle } from '@reacherhq/api';
@@ -49,14 +49,15 @@ checkSingle(
 	{
 		apiToken: '<YOUR_TOKEN>', // Optional, rate-limited if not provided.
 	}
-).then(console.log); // Output will be the JSON section described below.
+).then(console.log); // Output will be the JSON described in the "JSON Output" section below.
 ```
 
-### Batch Email Verification
+### 2. Batch Email Verification
 
 ```typescript
 import { batchQueue } from '@reacherhq/api';
 
+// Create a queue for email verifications.
 const q = batchQueue({
 	// Optional, rate-limited if not provided.
 	apiToken: '<YOUR_TOKEN>',
@@ -75,11 +76,11 @@ q.push({ to_email: 'someone2@gmail.com' }, { to_email: 'someone3@gmail.com' });
 
 // Perform some action when the queue is drained.
 q.drain(() => {
-	console.log('Finished processing the queue.');
+	console.log('Finished processing all items.');
 });
 ```
 
-## 📚 [See Full Documentation](https://github.com/reacherhq/reacher-js/blob/master/docs)
+## 📚 [See Full Documentation](https://github.com/reacherhq/reacher-js/tree/master/docs/modules)
 
 ## What Does Reacher Check?
 
@@ -133,7 +134,7 @@ The output will be a JSON with the below format, the fields should be self-expla
 }
 ```
 
-You can also take a look at the [OpenAPIv3 specification](https://reacher.email/docs#operation/post-check-email) of this JSON object.
+You can also take a look at the [OpenAPI v3 specification](https://reacher.email/docs#operation/post-check-email) of this JSON object.
 
 ## License
 
