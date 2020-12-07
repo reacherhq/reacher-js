@@ -17,7 +17,7 @@ export interface CheckEmailOutput extends ICheckEmailOutput {}
  * Reacher's backend base URL, without the version number
  */
 const REACHER_BACKEND_URL = `https://ssfy.sh/amaurymartiny/reacher`;
-const REACHER_LASTEST_VERSION = '0.1.5';
+const REACHER_LASTEST_VERSION = '0.1.6';
 
 /**
  * Options for checking an email.
@@ -31,11 +31,17 @@ export interface CheckSingleOptions {
 	/**
 	 * Backend version of Reacher to use. The latest version is 0.1.5.
 	 */
-	apiVersion?: '0.1.5';
+	apiVersion?: '0.1.5' | '0.1.6';
 	/**
 	 * @reacherhq/api uses axios under the hood, pass axios config here.
 	 */
 	axios?: AxiosRequestConfig;
+	/**
+	 * For users self-hosting Reacher and who would not like to use the Reacher
+	 * SaaS, this option allows to override the backend URL to call. This
+	 * option overrides the `apiVersion` option.
+	 */
+	backendUrl?: string;
 }
 
 /**
@@ -51,6 +57,12 @@ export function checkSingle(
 ): Promise<CheckEmailOutput> {
 	l('Processing email %s', input.to_email);
 
+	const backendUrl =
+		options.backendUrl ||
+		`${REACHER_BACKEND_URL}@${
+			options.apiVersion || REACHER_LASTEST_VERSION
+		}/check_email`;
+
 	// eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
 	const headers: Record<string, string> = {
 		'Content-Type': 'application/json',
@@ -61,17 +73,11 @@ export function checkSingle(
 	}
 
 	return axios
-		.post<CheckEmailOutput>(
-			`${REACHER_BACKEND_URL}@${
-				options.apiVersion || REACHER_LASTEST_VERSION
-			}/check_email`,
-			input,
-			{
-				...options.axios,
-				// eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
-				headers,
-			}
-		)
+		.post<CheckEmailOutput>(backendUrl, input, {
+			...options.axios,
+			// eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
+			headers,
+		})
 		.then(({ data }) => {
 			l('Got result for %s: %s', input.to_email, data.is_reachable);
 
