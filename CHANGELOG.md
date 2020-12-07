@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.2.3](https://github.com/reacherhq/reacher-js/compare/v0.2.1...v0.2.3) (2020-12-07)
+
+
+### Features
+
+* Add backendUrl option to override enpoint ([#60](https://github.com/reacherhq/reacher-js/issues/60)) ([862b54e](https://github.com/reacherhq/reacher-js/commit/862b54e5047b916fff691285d8f38e34d3e5cc86))
+
 ### [0.2.1](https://github.com/reacherhq/reacher-js/compare/v0.2.0...v0.2.1) (2020-11-01)
 
 
