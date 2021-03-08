@@ -2811,9 +2811,9 @@ typedoc-plugin-markdown@^3.0.2:
     handlebars "^4.7.6"
 
 typedoc-plugin-no-inherit@^1.1.10:
-  version "1.2.0"
-  resolved "https://registry.yarnpkg.com/typedoc-plugin-no-inherit/-/typedoc-plugin-no-inherit-1.2.0.tgz#7f73809c04cb29c03afe5eea356534968cb717a9"
-  integrity sha512-jAAslwDbm5sVpA6EQIg5twYctRi/bnT9TgZ5SwbrNpCD5xCIIylPRX9KxIoi1RJliVgCIAxWbSUzzLKGwJCkeA==
+  version "1.2.2"
+  resolved "https://registry.yarnpkg.com/typedoc-plugin-no-inherit/-/typedoc-plugin-no-inherit-1.2.2.tgz#bcd44256ec80773250baf2b4e4dc50261a33b791"
+  integrity sha512-y25JXvdmk8BzkRyc7SlJzredqgj0J3oAscv8gLdqEgIlOWwnZ+MVd6up2y6O+pJ1S2M3T4fDKEXmJDhdMaXIdQ==
 
 typedoc@^0.20.10:
   version "0.20.27"
