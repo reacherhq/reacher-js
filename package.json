@@ -1,7 +1,7 @@
 {
 	"name": "@reacherhq/api",
 	"version": "0.2.3",
-	"author": "Amaury Martiny <amaury.martiny@protonmail.com>",
+	"author": "Amaury <amaurym10@protonmail.com>",
 	"description": "Check if an email address exists without sending any email.",
 	"files": [
 		"/lib"

@@ -16,8 +16,8 @@
   <a href="https://david-dm.org/reacherhq/reacher-js">
     <img alt="david-dm" src="https://img.shields.io/david/reacherhq/reacher-js.svg" />
   </a>
-  <a href="https://github.com/sponsors/amaurymartiny">
-  	<img alt="Github Sponsor" src="https://img.shields.io/static/v1?label=Sponsor&message=%E2%9D%A4&logo=GitHub&link=https://github.com/sponsors/amaurymartiny" />
+  <a href="https://github.com/sponsors/amaurym">
+  	<img alt="Github Sponsor" src="https://img.shields.io/static/v1?label=Sponsor&message=%E2%9D%A4&logo=GitHub&link=https://github.com/sponsors/amaurym" />
   </a>
 </p>
 
