@@ -16,7 +16,7 @@ export interface CheckEmailOutput extends ICheckEmailOutput {}
 /**
  * Reacher's backend base URL, without the version number
  */
-const REACHER_BACKEND_URL = `https://ssfy.sh/amaurymartiny/reacher`;
+const REACHER_BACKEND_URL = `https://ssfy.sh/amaurym/reacher`;
 const REACHER_LASTEST_VERSION = '0.1.6';
 
 /**
