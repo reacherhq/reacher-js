@@ -1,4 +1,4 @@
-import { AsyncQueue, queue } from 'async';
+import { queue, QueueObject } from 'async';
 import { debug } from 'debug';
 
 import {
@@ -43,7 +43,7 @@ const DEFAULT_CONCURRENCY = 100;
  */
 export function batchQueue(
 	options: CheckBatchOptions = {}
-): AsyncQueue<CheckEmailInput> {
+): QueueObject<CheckEmailInput> {
 	l('Creating a batch queue.');
 
 	const q = queue<CheckEmailInput>((task, callback) => {

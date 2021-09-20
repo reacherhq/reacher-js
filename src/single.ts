@@ -14,10 +14,9 @@ export interface CheckEmailInput extends ICheckEmailInput {}
 export interface CheckEmailOutput extends ICheckEmailOutput {}
 
 /**
- * Reacher's backend base URL, without the version number
+ * Reacher's backend URL.
  */
-const REACHER_BACKEND_URL = `https://ssfy.sh/amaurym/reacher`;
-const REACHER_LASTEST_VERSION = '0.1.6';
+const REACHER_BACKEND_URL = 'https://api.reacher.email/v0/check_email';
 
 /**
  * Options for checking an email.
@@ -29,17 +28,12 @@ export interface CheckSingleOptions {
 	 */
 	apiToken?: string;
 	/**
-	 * Backend version of Reacher to use. The latest version is 0.1.5.
-	 */
-	apiVersion?: '0.1.5' | '0.1.6';
-	/**
 	 * @reacherhq/api uses axios under the hood, pass axios config here.
 	 */
 	axios?: AxiosRequestConfig;
 	/**
 	 * For users self-hosting Reacher and who would not like to use the Reacher
-	 * SaaS, this option allows to override the backend URL to call. This
-	 * option overrides the `apiVersion` option.
+	 * SaaS, this option allows to override the backend URL to call.
 	 */
 	backendUrl?: string;
 }
@@ -57,20 +51,14 @@ export function checkSingle(
 ): Promise<CheckEmailOutput> {
 	l('Processing email %s', input.to_email);
 
-	const backendUrl =
-		options.backendUrl ||
-		`${REACHER_BACKEND_URL}@${
-			options.apiVersion || REACHER_LASTEST_VERSION
-		}/check_email`;
+	const backendUrl = options.backendUrl || REACHER_BACKEND_URL;
 
 	// eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
 	const headers: Record<string, string> = {
 		'Content-Type': 'application/json',
+		Authorization: options.apiToken || 'test_api_token',
 		...options.axios?.headers,
 	};
-	if (options.apiToken) {
-		headers.Authorization = options.apiToken;
-	}
 
 	return axios
 		.post<CheckEmailOutput>(backendUrl, input, {

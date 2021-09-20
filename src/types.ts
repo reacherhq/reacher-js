@@ -116,7 +116,7 @@ export interface components {
 			username: string;
 		};
 		/**
-		 * An enum to describe how confident we are that the recipient address is real: `safe`, `risky`, `invalid` and `unknown`. Check our FAQ to know the meanings of the 4 possibilities: https://www.notion.so/reacherhq/Reacher-FAQ-389d6f51a53749f29d914239613c64eb.
+		 * An enum to describe how confident we are that the recipient address is real: `safe`, `risky`, `invalid` and `unknown`. Check our FAQ to know the meanings of the 4 possibilities: https://help.reacher.email/email-attributes-inside-json.
 		 */
 		Reachable: 'invalid' | 'unknown' | 'safe' | 'risky';
 		/**
@@ -135,6 +135,17 @@ export interface components {
 			 * In the SMTP connection, the EHLO hostname.
 			 */
 			hello_name?: string;
+			proxy?: components['schemas']['CheckEmailInputProxy'];
+		};
+		CheckEmailInputProxy: {
+			/**
+			 * The proxy host.
+			 */
+			host: string;
+			/**
+			 * The proxy port.
+			 */
+			port: number;
 		};
 	};
 }
