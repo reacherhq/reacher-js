@@ -2,6 +2,17 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [0.3.0](https://github.com/reacherhq/reacher-js/compare/v0.2.3...v0.3.0) (2021-09-20)
+
+
+### ⚠ BREAKING CHANGES
+
+* The `apiVersion` option has been removed, please pass an optional `backendUrl` option if you do not want to use Reacher's  backend (https://github.com/reacherhq/backend, hosted on `https://api.reacher.email`).
+
+### Bug Fixes
+
+* Update backend URL and fix batch ([#186](https://github.com/reacherhq/reacher-js/issues/186)) ([172f83b](https://github.com/reacherhq/reacher-js/commit/172f83b068864eed10f5a71b44f8b6f1870de4c0))
+
 ### [0.2.3](https://github.com/reacherhq/reacher-js/compare/v0.2.1...v0.2.3) (2020-12-07)
 
 
