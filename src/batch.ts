@@ -1,4 +1,4 @@
-import { QueueObject, queue } from 'async';
+import { queue, QueueObject } from 'async';
 import { debug } from 'debug';
 
 import {
