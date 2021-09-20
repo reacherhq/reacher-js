@@ -56,11 +56,9 @@ export function checkSingle(
 	// eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
 	const headers: Record<string, string> = {
 		'Content-Type': 'application/json',
+		Authorization: options.apiToken || 'test_api_token',
 		...options.axios?.headers,
 	};
-	if (options.apiToken) {
-		headers.Authorization = options.apiToken;
-	}
 
 	return axios
 		.post<CheckEmailOutput>(backendUrl, input, {

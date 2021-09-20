@@ -40,7 +40,7 @@ fs.createReadStream('./input_emails.csv')
 	// then into a CheckEmailInput object (with a `to_email` field), and push
 	// this object into the queue.
 	.on('data', (data: string[]) => {
-		q.push(data.map((email) => ({ to_email: email }))).catch(console.error);
+		q.push(data.map((email) => ({ to_email: email })));
 	})
 	// When we finish processing the whole CSV file, we call `.drain` on the
 	// queue, and pass a callback function where we output the results as CSV.
