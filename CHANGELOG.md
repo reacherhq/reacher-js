@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.3.1](https://github.com/reacherhq/reacher-js/compare/v0.3.0...v0.3.1) (2021-09-20)
+
+
+### Bug Fixes
+
+* Regenerate yarn.lock ([f8eb5cb](https://github.com/reacherhq/reacher-js/commit/f8eb5cbf1964b7d90e647333a447ee55217984c4))
+
 ## [0.3.0](https://github.com/reacherhq/reacher-js/compare/v0.2.3...v0.3.0) (2021-09-20)
 
 
