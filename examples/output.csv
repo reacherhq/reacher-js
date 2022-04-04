@@ -1,0 +1,4 @@
+"input","is_reachable","misc.is_disposable","misc.is_role_account","mx.accepts_mail","mx.records","smtp.can_connect_smtp","smtp.has_full_inbox","smtp.is_catch_all","smtp.is_deliverable","smtp.is_disabled","syntax.address","syntax.domain","syntax.is_valid_syntax","syntax.username"
+"foo@bar.baz","invalid",false,false,false,"[]",false,false,false,false,false,"foo@bar.baz","bar.baz",true,"foo"
+"yahoo@yahoo.com","invalid",false,false,true,"[""mta7.am0.yahoodns.net."",""mta6.am0.yahoodns.net."",""mta5.am0.yahoodns.net.""]",true,false,false,false,false,"yahoo@yahoo.com","yahoo.com",true,"yahoo"
+"someone@gmail.com","invalid",false,false,true,"[""alt1.gmail-smtp-in.l.google.com."",""gmail-smtp-in.l.google.com."",""alt3.gmail-smtp-in.l.google.com."",""alt2.gmail-smtp-in.l.google.com."",""alt4.gmail-smtp-in.l.google.com.""]",true,false,false,false,true,"someone@gmail.com","gmail.com",true,"someone"

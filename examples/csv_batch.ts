@@ -2,7 +2,7 @@
  * @ignore
  */ /** */
 
-import csvParse from 'csv-parse';
+import { parse } from 'csv-parse';
 import fs from 'fs';
 import { Parser } from 'json2csv';
 
@@ -34,7 +34,7 @@ q.error((err, input) => {
 // Import our CSV file with the list of emails to check.
 fs.createReadStream('./input_emails.csv')
 	// Use `csv-parse` to parse the CSV.
-	.pipe(csvParse())
+	.pipe(parse())
 	// The `on('data')` handler returns chunks of data at once, so `data`
 	// is a `string[]`. Every time we receive some chunks of emails, we convert
 	// then into a CheckEmailInput object (with a `to_email` field), and push
