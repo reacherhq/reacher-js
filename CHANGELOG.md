@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.3.2](https://github.com/reacherhq/reacher-js/compare/v0.3.1...v0.3.2) (2022-04-04)
+
+
+### Bug Fixes
+
+* Lower default concurrency to 2 ([9b33eae](https://github.com/reacherhq/reacher-js/commit/9b33eae8ede1eefa59dba2e7d702dbb2d9038c4b))
+
 ### [0.3.1](https://github.com/reacherhq/reacher-js/compare/v0.3.0...v0.3.1) (2021-09-20)
 
 
