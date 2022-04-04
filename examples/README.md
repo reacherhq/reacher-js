@@ -13,6 +13,11 @@ cd examples
 
 This will read the `input_emails.csv` file, and output the results into an `output.csv` file.
 
+```bash
+# On MacOS
+open output.csv
+```
+
 If you wish to use your own Reacher API token, pass it in via the `REACHER_API_TOKEN` environment variable.
 
 ```bash
