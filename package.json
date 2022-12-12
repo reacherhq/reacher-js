@@ -23,7 +23,7 @@
 		"@types/async": "^3.2.12",
 		"@types/debug": "^4.1.7",
 		"async": "^3.2.3",
-		"axios": "^0.27.2",
+		"axios": "^1.2.1",
 		"debug": "^4.3.4"
 	},
 	"devDependencies": {
