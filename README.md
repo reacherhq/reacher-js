@@ -13,9 +13,6 @@
   <a href="https://opensource.org/licenses/Apache-2.0">
     <img alt="Apache-2.0" src="https://img.shields.io/badge/License-Apache%202.0-blue.svg" />
   </a>
-  <a href="https://david-dm.org/reacherhq/reacher-js">
-    <img alt="david-dm" src="https://img.shields.io/david/reacherhq/reacher-js.svg" />
-  </a>
   <a href="https://github.com/sponsors/amaurym">
   	<img alt="Github Sponsor" src="https://img.shields.io/static/v1?label=Sponsor&message=%E2%9D%A4&logo=GitHub&link=https://github.com/sponsors/amaurym" />
   </a>
@@ -27,7 +24,7 @@
 
 Check if an email address exists without sending any email.
 
-`@reacher/api` is a thin TypeScript wrapper around the [Reacher Email Verification API](https://reacher.email). Reacher is a 100% open-source SaaS, written in Rust. It's also free for personal use, and the API token in `@reacherhq/api` is optional, but without it the requests will be rate-limited to 50 per month.
+`@reacherhq/api` is a thin TypeScript wrapper around the [Reacher Email Verification API](https://reacher.email). Reacher is a 100% open-source SaaS, written in Rust. It's also free for personal use, and the API token in `@reacherhq/api` is optional, but without it the requests will be rate-limited to 50 per month.
 
 ## Usage
 
@@ -37,7 +34,7 @@ Install the package:
 yarn add @reacherhq/api # Or npm install @reacherhq/api
 ```
 
-There are two ways to use the library: by sending single API requests, or by using batch verification.
+There are two ways to use the library: by sending single API requests, or by using batch verification (parallel queue).
 
 ### 1. Single Email Verification
 
@@ -47,7 +44,8 @@ import { checkSingle } from '@reacherhq/api';
 checkSingle(
 	{ to_email: 'someone@gmail.com' },
 	{
-		apiToken: '<YOUR_TOKEN>', // Optional, rate-limited if not provided.
+		// Required.
+		apiToken: '<YOUR_TOKEN>',
 	}
 ).then(console.log); // Output will be the JSON described in the "JSON Output" section below.
 ```
@@ -59,7 +57,7 @@ import { batchQueue } from '@reacherhq/api';
 
 // Create a queue for email verifications.
 const q = batchQueue({
-	// Optional, rate-limited if not provided.
+	// Required.
 	apiToken: '<YOUR_TOKEN>',
 	// Optional, callback to call on each successful verification.
 	onSuccessSingle: (result) => {
@@ -79,23 +77,6 @@ q.drain(() => {
 	console.log('Finished processing all items.');
 });
 ```
-
-## 📚 [See Full Documentation](https://github.com/reacherhq/reacher-js/tree/master/docs/modules)
-
-## What Does Reacher Check?
-
-| Included? | Feature                                       | Description                                                                                                                     | JSON field               |
-| --------- | --------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------- | ------------------------ |
-| ✅        | **Email reachability**                        | How confident are we in sending an email to this address? Can be one of `safe`, `risky`, `invalid` or `unknown`.                | `is_reachable`           |
-| ✅        | **Syntax validation**                         | Is the address syntactically valid?                                                                                             | `syntax.is_valid_syntax` |
-| ✅        | **DNS records validation**                    | Does the domain of the email address have valid MX DNS records?                                                                 | `mx.accepts_mail`        |
-| ✅        | **Disposable email address (DEA) validation** | Is the address provided by a known [disposable email address](https://en.wikipedia.org/wiki/Disposable_email_address) provider? | `misc.is_disposable`     |
-| ✅        | **SMTP server validation**                    | Can the mail exchanger of the email address domain be contacted successfully?                                                   | `smtp.can_connect_smtp`  |
-| ✅        | **Email deliverability**                      | Is an email sent to this address deliverable?                                                                                   | `smtp.is_deliverable`    |
-| ✅        | **Mailbox disabled**                          | Has this email address been disabled by the email provider?                                                                     | `smtp.is_disabled`       |
-| ✅        | **Full inbox**                                | Is the inbox of this mailbox full?                                                                                              | `smtp.has_full_inbox`    |
-| ✅        | **Catch-all address**                         | Is this email address a [catch-all](https://debounce.io/blog/help/what-is-a-catch-all-or-accept-all/) address?                  | `smtp.is_catch_all`      |
-| ✅        | **Role account validation**                   | Is the email address a well-known role account?                                                                                 | `misc.is_role_account`   |
 
 ## JSON Output
 
@@ -134,7 +115,7 @@ The output will be a JSON with the below format, the fields should be self-expla
 }
 ```
 
-You can also take a look at the [OpenAPI v3 specification](https://reacher.email/docs#operation/post-check-email) of this JSON object.
+You can also take a look at the [OpenAPI v3 specification](https://help.reacher.email/rest-api-documentation) of this JSON object.
 
 ## License
 

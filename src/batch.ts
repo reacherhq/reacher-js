@@ -46,7 +46,7 @@ const DEFAULT_CONCURRENCY = 2;
  * [QueueObject](https://caolan.github.io/async/v3/docs.html#QueueObject).
  */
 export function batchQueue(
-	options: CheckBatchOptions = {}
+	options: CheckBatchOptions
 ): QueueObject<CheckEmailInput> {
 	l('Creating a batch queue.');
 

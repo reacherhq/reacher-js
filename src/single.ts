@@ -23,14 +23,9 @@ const REACHER_BACKEND_URL = 'https://api.reacher.email/v0/check_email';
  */
 export interface CheckSingleOptions {
 	/**
-	 * Unique Reacher API token to use. If not passed, then the API is still
-	 * usable, but will be heavily rate-limited (50 verifications per month).
+	 * Unique Reacher API token to use. This is required.
 	 */
-	apiToken?: string;
-	/**
-	 * @reacherhq/api uses axios under the hood, pass axios config here.
-	 */
-	axios?: AxiosRequestConfig;
+	apiToken: string;
 	/**
 	 * For users self-hosting Reacher and who would not like to use the Reacher
 	 * SaaS, this option allows to override the backend URL to call.
@@ -47,23 +42,19 @@ export interface CheckSingleOptions {
  */
 export function checkSingle(
 	input: CheckEmailInput,
-	options: CheckSingleOptions = {}
+	options: CheckSingleOptions
 ): Promise<CheckEmailOutput> {
 	l('Processing email %s', input.to_email);
 
 	const backendUrl = options.backendUrl || REACHER_BACKEND_URL;
 
-	// eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
-	const headers: Record<string, string> = {
+	const headers = {
 		'Content-Type': 'application/json',
-		Authorization: options.apiToken || 'test_api_token',
-		...options.axios?.headers,
+		Authorization: options.apiToken,
 	};
 
 	return axios
 		.post<CheckEmailOutput>(backendUrl, input, {
-			...options.axios,
-			// eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
 			headers,
 		})
 		.then(({ data }) => {
