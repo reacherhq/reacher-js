@@ -1,4 +1,4 @@
-import axios, { AxiosRequestConfig } from 'axios';
+import axios from 'axios';
 import { debug } from 'debug';
 
 import { components } from './types';
