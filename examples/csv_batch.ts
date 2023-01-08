@@ -14,7 +14,7 @@ const emailResults: CheckEmailOutput[] = [];
 // We set up our batch verfication queue. Each time we successfully verify an
 // email, we push the result of the verification to our `emailResults` array.
 const q = batchQueue({
-	apiToken: process.env.REACHER_API_TOKEN,
+	apiToken: process.env.REACHER_API_TOKEN as string,
 	onSuccessSingle: (output) => {
 		console.log(
 			`Successfully verified ${output.input}: ${output.is_reachable}.`

@@ -15,7 +15,6 @@
 	"repository": "https://github.com/reacherhq/reacher-js",
 	"scripts": {
 		"build": "rimraf lib && tsc -p tsconfig.build.json",
-		"docs": "typedoc",
 		"generate:typings": "swagger-to-ts openapi.json -o src/types.ts --prettier-config ./prettierrc.js",
 		"lint": "tsc --noEmit && eslint . --ext .ts"
 	},
