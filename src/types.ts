@@ -59,6 +59,10 @@ export interface components {
 			 * Is this email a role-based account?
 			 */
 			is_role_account: boolean;
+			/**
+			 * URL to the email's Gravatar profile picture. It is only populated if check_gravatar is set to true in the request, and if the email has an associated Gravatar.
+			 */
+			gravatar_url?: string;
 		};
 		/**
 		 * Object holding the MX details of the mail server.
@@ -120,7 +124,7 @@ export interface components {
 		 */
 		Reachable: 'invalid' | 'unknown' | 'safe' | 'risky';
 		/**
-		 * Input containing all parameters necessary for an email verification.
+		 * Input containing all parameters necessary for an email verification, as well as some config on how to perform the verification.
 		 */
 		CheckEmailInput: {
 			/**
@@ -136,6 +140,42 @@ export interface components {
 			 */
 			hello_name?: string;
 			proxy?: components['schemas']['CheckEmailInputProxy'];
+			/**
+			 * SMTP port to use for email validation. Generally, ports 25, 465, 587 and 2525 are used.
+			 */
+			smtp_port?: number;
+			/**
+			 * Add optional timeout for the SMTP verification step, in seconds.
+			 */
+			smtp_timeout?: number;
+			/**
+			 * For Yahoo email addresses, use Yahoo's API instead of connecting directly to their SMTP servers.
+			 */
+			yahoo_use_api?: boolean;
+			/**
+			 * For Gmail email addresses, use Gmail's API instead of connecting directly to their SMTP servers.
+			 */
+			gmail_use_api?: boolean;
+			/**
+			 * For Microsoft 365 email addresses, use OneDrive's API instead of connecting directly to their SMTP servers.
+			 */
+			microsoft365_use_api?: boolean;
+			/**
+			 * Whether to check if a gravatar image is existing for the given email.
+			 */
+			check_gravatar?: boolean;
+			/**
+			 * For Hotmail/Outlook email addresses, use a headless navigator connecting to the password recovery page instead of the SMTP server. This assumes you have a WebDriver compatible process running, then pass its endpoint, usually http://localhost:4444. We recommend running chromedriver (and not geckodriver) as it allows parallel requests.
+			 */
+			hotmail_use_headless?: string;
+			/**
+			 * Number of retries of SMTP connections to do.
+			 */
+			retries?: number;
+			/**
+			 * How to apply TLS to a SMTP client connection.
+			 */
+			smtp_security?: 'None' | 'Opportunistic' | 'Required' | 'Wrapper';
 		};
 		CheckEmailInputProxy: {
 			/**
@@ -146,6 +186,14 @@ export interface components {
 			 * The proxy port.
 			 */
 			port: number;
+			/**
+			 * Username to pass to proxy authentication.
+			 */
+			username?: string;
+			/**
+			 * Password to pass to proxy authentication.
+			 */
+			password?: string;
 		};
 	};
 }
