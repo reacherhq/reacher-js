@@ -145,10 +145,6 @@ export interface components {
 			 */
 			smtp_port?: number;
 			/**
-			 * Add optional timeout for the SMTP verification step, in seconds.
-			 */
-			smtp_timeout?: number;
-			/**
 			 * For Yahoo email addresses, use Yahoo's API instead of connecting directly to their SMTP servers.
 			 */
 			yahoo_use_api?: boolean;
@@ -176,6 +172,7 @@ export interface components {
 			 * How to apply TLS to a SMTP client connection.
 			 */
 			smtp_security?: 'None' | 'Opportunistic' | 'Required' | 'Wrapper';
+			smtp_timeout?: components['schemas']['Duration'];
 		};
 		CheckEmailInputProxy: {
 			/**
@@ -194,6 +191,19 @@ export interface components {
 			 * Password to pass to proxy authentication.
 			 */
 			password?: string;
+		};
+		/**
+		 * An object representing a duration (seconds + nanoseconds).
+		 */
+		Duration: {
+			/**
+			 * Seconds
+			 */
+			secs: number;
+			/**
+			 * Nanoseconds
+			 */
+			nanos: string;
 		};
 	};
 }
