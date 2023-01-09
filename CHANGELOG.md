@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.3.4](https://github.com/reacherhq/reacher-js/compare/v0.3.3...v0.3.4) (2023-01-09)
+
+
+### Features
+
+* Regenerate to newest API ([61f0a8b](https://github.com/reacherhq/reacher-js/commit/61f0a8b9047c999315b9f5ce65d6241746d20585))
+
 ### [0.3.3](https://github.com/reacherhq/reacher-js/compare/v0.3.2...v0.3.3) (2023-01-08)
 
 
