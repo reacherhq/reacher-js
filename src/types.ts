@@ -33,6 +33,7 @@ export interface components {
 				| components['schemas']['SmtpDetails']
 				| components['schemas']['Error'];
 			syntax: components['schemas']['SyntaxDetails'];
+			debug?: components['schemas']['DebugDetails'];
 		};
 		/**
 		 * Object describing an error happening during the misc, MX, or SMTP verifications.
@@ -101,6 +102,10 @@ export interface components {
 			 * Has this email address been disabled by the email provider?
 			 */
 			is_disabled: boolean;
+			/**
+			 * The method used to verify this email.
+			 */
+			method: 'Headless' | 'Api' | 'Skipped' | 'SmtpConnection';
 		};
 		/**
 		 * Syntax validation of an email address.
@@ -124,6 +129,18 @@ export interface components {
 		 */
 		Reachable: 'invalid' | 'unknown' | 'safe' | 'risky';
 		/**
+		 * An enum to describe how we verify Yahoo emails.
+		 */
+		YahooVerifyMethod: 'Api' | 'Headless' | 'Smtp';
+		/**
+		 * An enum to describe how we verify Hotmail emails.
+		 */
+		HotmailVerifyMethod: 'Api' | 'Headless' | 'Smtp';
+		/**
+		 * An enum to describe how we verify Gmail emails.
+		 */
+		GmailVerifyMethod: 'Api' | 'Smtp';
+		/**
 		 * Input containing all parameters necessary for an email verification, as well as some config on how to perform the verification.
 		 */
 		CheckEmailInput: {
@@ -144,26 +161,13 @@ export interface components {
 			 * SMTP port to use for email validation. Generally, ports 25, 465, 587 and 2525 are used.
 			 */
 			smtp_port?: number;
-			/**
-			 * For Yahoo email addresses, use Yahoo's API instead of connecting directly to their SMTP servers.
-			 */
-			yahoo_use_api?: boolean;
-			/**
-			 * For Gmail email addresses, use Gmail's API instead of connecting directly to their SMTP servers.
-			 */
-			gmail_use_api?: boolean;
-			/**
-			 * For Microsoft 365 email addresses, use OneDrive's API instead of connecting directly to their SMTP servers.
-			 */
-			microsoft365_use_api?: boolean;
+			yahoo_verify_method?: components['schemas']['YahooVerifyMethod'];
+			gmail_verify_method?: components['schemas']['GmailVerifyMethod'];
+			hotmail_verify_method?: components['schemas']['HotmailVerifyMethod'];
 			/**
 			 * Whether to check if a gravatar image is existing for the given email.
 			 */
 			check_gravatar?: boolean;
-			/**
-			 * For Hotmail/Outlook email addresses, use a headless navigator connecting to the password recovery page instead of the SMTP server. This assumes you have a WebDriver compatible process running, then pass its endpoint, usually http://localhost:4444. We recommend running chromedriver (and not geckodriver) as it allows parallel requests.
-			 */
-			hotmail_use_headless?: string;
 			/**
 			 * Number of retries of SMTP connections to do.
 			 */
@@ -204,6 +208,13 @@ export interface components {
 			 * Nanoseconds
 			 */
 			nanos: string;
+		};
+		DebugDetails: {
+			start_time?: string;
+			end_time?: string;
+			duration?: components['schemas']['Duration'];
+			server_ip?: string;
+			server_name?: string;
 		};
 	};
 }
