@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.3.7](https://github.com/reacherhq/reacher-js/compare/v0.3.6...v0.3.7) (2023-12-05)
+
+
+### Bug Fixes
+
+* Update TypeScript types ([45a359a](https://github.com/reacherhq/reacher-js/commit/45a359a4967f86a6edb62d910f5c41bceeabb863))
+
 ### [0.3.6](https://github.com/reacherhq/reacher-js/compare/v0.3.5...v0.3.6) (2023-12-05)
 
 
