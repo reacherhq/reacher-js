@@ -102,7 +102,7 @@ export interface components {
 			 * Has this email address been disabled by the email provider?
 			 */
 			is_disabled: boolean;
-			method: components['schemas']['SmtpMethod'];
+			method: components['schemas']['VerifMethod'];
 		};
 		/**
 		 * Syntax validation of an email address.
@@ -212,15 +212,19 @@ export interface components {
 			duration?: components['schemas']['Duration'];
 			server_ip?: string;
 		};
-		SmtpMethod: {
+		VerifMethod: {
 			/**
 			 * The method used to perform the email verification
 			 */
-			type: 'SmtpConnection' | 'Headless' | 'Api' | 'Skipped';
+			type: 'Smtp' | 'Headless' | 'Api' | 'Skipped';
 			/**
 			 * If `type` is `SmtpConnection`, the hostname that Reacher connected to.
 			 */
 			host?: string;
+			/**
+			 * If `type` is `SmtpConnection`, the port that Reacher connected to.
+			 */
+			port?: number;
 		};
 	};
 }
