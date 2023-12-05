@@ -102,7 +102,6 @@ export interface components {
 			 * Has this email address been disabled by the email provider?
 			 */
 			is_disabled: boolean;
-			method: components['schemas']['VerifMethod'];
 		};
 		/**
 		 * Syntax validation of an email address.
@@ -128,15 +127,15 @@ export interface components {
 		/**
 		 * An enum to describe how we verify Yahoo emails.
 		 */
-		YahooVerifyMethod: 'Api' | 'Headless' | 'Smtp';
+		YahooVerifMethod: 'Api' | 'Headless' | 'Smtp';
 		/**
 		 * An enum to describe how we verify Hotmail emails.
 		 */
-		HotmailVerifyMethod: 'Api' | 'Headless' | 'Smtp';
+		HotmailVerifMethod: 'Api' | 'Headless' | 'Smtp';
 		/**
 		 * An enum to describe how we verify Gmail emails.
 		 */
-		GmailVerifyMethod: 'Api' | 'Smtp';
+		GmailVerifMethod: 'Api' | 'Smtp';
 		/**
 		 * Input containing all parameters necessary for an email verification, as well as some config on how to perform the verification.
 		 */
@@ -158,9 +157,9 @@ export interface components {
 			 * SMTP port to use for email validation. Generally, ports 25, 465, 587 and 2525 are used.
 			 */
 			smtp_port?: number;
-			yahoo_verify_method?: components['schemas']['YahooVerifyMethod'];
-			gmail_verify_method?: components['schemas']['GmailVerifyMethod'];
-			hotmail_verify_method?: components['schemas']['HotmailVerifyMethod'];
+			yahoo_verif_method?: components['schemas']['YahooVerifMethod'];
+			gmail_verif_method?: components['schemas']['GmailVerifMethod'];
+			hotmail_verif_method?: components['schemas']['HotmailVerifMethod'];
 			/**
 			 * Whether to check if a gravatar image is existing for the given email.
 			 */
@@ -175,6 +174,9 @@ export interface components {
 			smtp_security?: 'None' | 'Opportunistic' | 'Required' | 'Wrapper';
 			smtp_timeout?: components['schemas']['Duration'];
 		};
+		/**
+		 * Proxy information for email verification.
+		 */
 		CheckEmailInputProxy: {
 			/**
 			 * The proxy host.
@@ -193,6 +195,22 @@ export interface components {
 			 */
 			password?: string;
 		};
+		DebugDetails: {
+			/**
+			 * The time when the email verification started.
+			 */
+			start_time: string;
+			/**
+			 * The time when the email verification ended.
+			 */
+			end_time: string;
+			duration: components['schemas']['Duration'];
+			/**
+			 * The name of the server that performed the email verification.
+			 */
+			server_name: string;
+			smtp: components['schemas']['DebugDetailsSmtp'];
+		};
 		/**
 		 * An object representing a duration (seconds + nanoseconds).
 		 */
@@ -206,12 +224,15 @@ export interface components {
 			 */
 			nanos: string;
 		};
-		DebugDetails: {
-			start_time?: string;
-			end_time?: string;
-			duration?: components['schemas']['Duration'];
-			server_ip?: string;
+		/**
+		 * Smtp details used for debugging, such as which method is used.
+		 */
+		DebugDetailsSmtp: {
+			verif_method?: components['schemas']['VerifMethod'];
 		};
+		/**
+		 * The verification method used for the email.
+		 */
 		VerifMethod: {
 			/**
 			 * The method used to perform the email verification
