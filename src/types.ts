@@ -222,7 +222,7 @@ export interface components {
 			/**
 			 * Nanoseconds
 			 */
-			nanos: string;
+			nanos: number;
 		};
 		/**
 		 * Smtp details used for debugging, such as which method is used.
