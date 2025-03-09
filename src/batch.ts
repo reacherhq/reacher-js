@@ -2,8 +2,8 @@ import { queue, QueueObject } from 'async';
 import { debug } from 'debug';
 
 import {
-	CheckEmailInput,
 	CheckEmailOutput,
+	CheckEmailRequest,
 	checkSingle,
 	CheckSingleOptions,
 } from './single';
@@ -47,10 +47,10 @@ const DEFAULT_CONCURRENCY = 2;
  */
 export function batchQueue(
 	options: CheckBatchOptions
-): QueueObject<CheckEmailInput> {
+): QueueObject<CheckEmailRequest> {
 	l('Creating a batch queue.');
 
-	const q = queue<CheckEmailInput>((task, callback) => {
+	const q = queue<CheckEmailRequest>((task, callback) => {
 		checkSingle(task, options)
 			.then((output) => {
 				if (options.onSuccessSingle) {

@@ -37,7 +37,7 @@ fs.createReadStream('./input_emails.csv')
 	.pipe(parse())
 	// The `on('data')` handler returns chunks of data at once, so `data`
 	// is a `string[]`. Every time we receive some chunks of emails, we convert
-	// then into a CheckEmailInput object (with a `to_email` field), and push
+	// then into a CheckEmailRequest object (with a `to_email` field), and push
 	// this object into the queue.
 	.on('data', (data: string[]) => {
 		q.push(data.map((email) => ({ to_email: email }))); // eslint-disable-line

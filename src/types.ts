@@ -6,140 +6,9 @@
 export interface components {
 	schemas: {
 		/**
-		 * The verification result of an email.
+		 * A request object to perform an email verification. The `to_email` field is required, all other fields are optional.
 		 */
-		CheckEmailOutput: {
-			/**
-			 * The input email address.
-			 */
-			input: string;
-			is_reachable: components['schemas']['Reachable'];
-			/**
-			 * Miscellaneous information about the email account.
-			 */
-			misc:
-				| components['schemas']['MiscDetails']
-				| components['schemas']['Error'];
-			/**
-			 * Information gathered from querying the MX records of the mail server.
-			 */
-			mx:
-				| components['schemas']['MxDetails']
-				| components['schemas']['Error'];
-			/**
-			 * Verifications performed by connecting to the mail server via SMTP.
-			 */
-			smtp:
-				| components['schemas']['SmtpDetails']
-				| components['schemas']['Error'];
-			syntax: components['schemas']['SyntaxDetails'];
-			debug?: components['schemas']['DebugDetails'];
-		};
-		/**
-		 * Object describing an error happening during the misc, MX, or SMTP verifications.
-		 */
-		Error: {
-			/**
-			 * An error type.
-			 */
-			type: string;
-			/**
-			 * A human-readable description of the error.
-			 */
-			message: string;
-		};
-		/**
-		 * Miscellaneous information about the email account.
-		 */
-		MiscDetails: {
-			/**
-			 * Is the address provided by a known disposable email address provider?
-			 */
-			is_disposable: boolean;
-			/**
-			 * Is this email a role-based account?
-			 */
-			is_role_account: boolean;
-			/**
-			 * URL to the email's Gravatar profile picture. It is only populated if check_gravatar is set to true in the request, and if the email has an associated Gravatar.
-			 */
-			gravatar_url?: string;
-		};
-		/**
-		 * Object holding the MX details of the mail server.
-		 */
-		MxDetails: {
-			/**
-			 * Does the server accept mails?
-			 */
-			accepts_mail: boolean;
-			/**
-			 * The list of FQDN (Fully Qualified Domain Names) of the mail server.
-			 */
-			records: string[];
-		};
-		/**
-		 * Verifications performed by connecting to the mail server via SMTP.
-		 */
-		SmtpDetails: {
-			/**
-			 * Can the mail exchanger of the email address domain be contacted successfully?
-			 */
-			can_connect_smtp: boolean;
-			/**
-			 * Is the inbox of this mailbox full?
-			 */
-			has_full_inbox: boolean;
-			/**
-			 * Is this email address a catch-all address?
-			 */
-			is_catch_all: boolean;
-			/**
-			 * Is an email sent to this address deliverable?
-			 */
-			is_deliverable: boolean;
-			/**
-			 * Has this email address been disabled by the email provider?
-			 */
-			is_disabled: boolean;
-		};
-		/**
-		 * Syntax validation of an email address.
-		 */
-		SyntaxDetails: {
-			/**
-			 * The domain name of the email, i.e. the part after the "@" symbol.
-			 */
-			domain: string;
-			/**
-			 * Is the address syntactically valid?
-			 */
-			is_valid_syntax: boolean;
-			/**
-			 * The username of the email, i.e. the part before the "@" symbol.
-			 */
-			username: string;
-		};
-		/**
-		 * An enum to describe how confident we are that the recipient address is real: `safe`, `risky`, `invalid` and `unknown`. Check our FAQ to know the meanings of the 4 possibilities: https://help.reacher.email/email-attributes-inside-json.
-		 */
-		Reachable: 'invalid' | 'unknown' | 'safe' | 'risky';
-		/**
-		 * An enum to describe how we verify Yahoo emails.
-		 */
-		YahooVerifMethod: 'Api' | 'Headless' | 'Smtp';
-		/**
-		 * An enum to describe how we verify Hotmail emails.
-		 */
-		HotmailVerifMethod: 'Api' | 'Headless' | 'Smtp';
-		/**
-		 * An enum to describe how we verify Gmail emails.
-		 */
-		GmailVerifMethod: 'Api' | 'Smtp';
-		/**
-		 * Input containing all parameters necessary for an email verification, as well as some config on how to perform the verification.
-		 */
-		CheckEmailInput: {
+		CheckEmailRequest: {
 			/**
 			 * In the SMTP connection, the FROM email address.
 			 */
@@ -152,100 +21,237 @@ export interface components {
 			 * In the SMTP connection, the EHLO hostname.
 			 */
 			hello_name?: string;
-			proxy?: components['schemas']['CheckEmailInputProxy'];
+			proxy?: components['schemas']['CheckEmailRequestProxy'];
 			/**
-			 * SMTP port to use for email validation. Generally, ports 25, 465, 587 and 2525 are used.
+			 * SMTP port to use for email validation. Defaults to 25, but 465, 587, and 2525 are sometimes also used.
 			 */
 			smtp_port?: number;
-			yahoo_verif_method?: components['schemas']['YahooVerifMethod'];
 			gmail_verif_method?: components['schemas']['GmailVerifMethod'];
-			hotmail_verif_method?: components['schemas']['HotmailVerifMethod'];
+			hotmailb2b_verif_method?: components['schemas']['HotmailB2BVerifMethod'];
+			hotmailb2c_verif_method?: components['schemas']['HotmailB2CVerifMethod'];
+			yahoo_verif_method?: components['schemas']['YahooVerifMethod'];
 			/**
-			 * Whether to check if a gravatar image is existing for the given email.
+			 * Whether to check if a Gravatar image exists for the given email.
 			 */
 			check_gravatar?: boolean;
-			/**
-			 * Number of retries of SMTP connections to do.
-			 */
-			retries?: number;
-			/**
-			 * How to apply TLS to a SMTP client connection.
-			 */
-			smtp_security?: 'None' | 'Opportunistic' | 'Required' | 'Wrapper';
-			smtp_timeout?: components['schemas']['Duration'];
 		};
 		/**
-		 * Proxy information for email verification.
+		 * The result of the email verification process.
 		 */
-		CheckEmailInputProxy: {
+		CheckEmailOutput: {
 			/**
-			 * The proxy host.
+			 * The email address that was verified.
+			 */
+			input: string;
+			is_reachable: components['schemas']['Reachable'];
+			/**
+			 * Additional information about the email account.
+			 */
+			misc:
+				| components['schemas']['MiscDetails']
+				| components['schemas']['CoreError'];
+			/**
+			 * Details obtained from querying the mail server's MX records.
+			 */
+			mx:
+				| components['schemas']['MxDetails']
+				| components['schemas']['CoreError'];
+			/**
+			 * Results from connecting to the mail server via SMTP.
+			 */
+			smtp:
+				| components['schemas']['SmtpDetails']
+				| components['schemas']['CoreError'];
+			syntax: components['schemas']['SyntaxDetails'];
+			debug?: components['schemas']['DebugDetails'];
+		};
+		/**
+		 * An enumeration describing the confidence level that the recipient address is valid: `safe`, `risky`, `invalid`, or `unknown`. Refer to our FAQ for detailed definitions: https://help.reacher.email/email-attributes-inside-json.
+		 */
+		Reachable: 'invalid' | 'unknown' | 'safe' | 'risky';
+		/**
+		 * Additional information about the email account.
+		 */
+		MiscDetails: {
+			/**
+			 * Indicates if the email address is from a known disposable email provider.
+			 */
+			is_disposable: boolean;
+			/**
+			 * Indicates if the email address is a role-based account.
+			 */
+			is_role_account: boolean;
+			/**
+			 * URL to the Gravatar profile picture associated with the email, if available and requested.
+			 */
+			gravatar_url?: string;
+			/**
+			 * Is this a B2C email address?
+			 */
+			is_b2c: boolean;
+		};
+		/**
+		 * Details about the mail server's MX records.
+		 */
+		MxDetails: {
+			/**
+			 * Indicates if the mail server accepts emails.
+			 */
+			accepts_mail: boolean;
+			/**
+			 * List of Fully Qualified Domain Names (FQDN) of the mail server.
+			 */
+			records: string[];
+		};
+		/**
+		 * Results from SMTP connection attempts to the mail server.
+		 */
+		SmtpDetails: {
+			/**
+			 * Indicates if the mail exchanger can be contacted successfully.
+			 */
+			can_connect_smtp: boolean;
+			/**
+			 * Indicates if the mailbox is full.
+			 */
+			has_full_inbox: boolean;
+			/**
+			 * Indicates if the email address is a catch-all address.
+			 */
+			is_catch_all: boolean;
+			/**
+			 * Indicates if an email sent to this address is deliverable.
+			 */
+			is_deliverable: boolean;
+			/**
+			 * Indicates if the email address has been disabled by the provider.
+			 */
+			is_disabled: boolean;
+		};
+		/**
+		 * Validation of the email address syntax.
+		 */
+		SyntaxDetails: {
+			/**
+			 * The domain part of the email address.
+			 */
+			domain: string;
+			/**
+			 * Indicates if the email address syntax is valid.
+			 */
+			is_valid_syntax: boolean;
+			/**
+			 * The username part of the email address.
+			 */
+			username: string;
+		};
+		/**
+		 * Details of an error encountered during the verification process.
+		 */
+		CoreError: {
+			/**
+			 * The type of error.
+			 */
+			type: string;
+			/**
+			 * A human-readable description of the error.
+			 */
+			message: string;
+		};
+		/**
+		 * Enumeration describing the method used to verify Yahoo emails.
+		 */
+		YahooVerifMethod: 'Api' | 'Headless' | 'Smtp';
+		/**
+		 * Enumeration describing the method used to verify Hotmail B2B emails.
+		 */
+		HotmailB2BVerifMethod: 'Smtp';
+		/**
+		 * Enumeration describing the method used to verify Hotmail B2C emails.
+		 */
+		HotmailB2CVerifMethod: 'Smtp' | 'Headless' | 'Api';
+		/**
+		 * Enumeration describing the method used to verify Gmail emails.
+		 */
+		GmailVerifMethod: 'Api' | 'Smtp';
+		/**
+		 * Proxy configuration for email verification.
+		 */
+		CheckEmailRequestProxy: {
+			/**
+			 * The proxy host address.
 			 */
 			host: string;
 			/**
-			 * The proxy port.
+			 * The proxy port number.
 			 */
 			port: number;
 			/**
-			 * Username to pass to proxy authentication.
+			 * Username for proxy authentication.
 			 */
 			username?: string;
 			/**
-			 * Password to pass to proxy authentication.
+			 * Password for proxy authentication.
 			 */
 			password?: string;
 		};
 		DebugDetails: {
 			/**
-			 * The time when the email verification started.
+			 * The timestamp when the email verification started.
 			 */
 			start_time: string;
 			/**
-			 * The time when the email verification ended.
+			 * The timestamp when the email verification ended.
 			 */
 			end_time: string;
 			duration: components['schemas']['Duration'];
 			/**
-			 * The name of the server that performed the email verification.
+			 * The name of the server that performed the verification.
 			 */
 			server_name: string;
 			smtp: components['schemas']['DebugDetailsSmtp'];
 		};
 		/**
-		 * An object representing a duration (seconds + nanoseconds).
+		 * An object representing a duration in seconds and nanoseconds.
 		 */
 		Duration: {
 			/**
-			 * Seconds
+			 * Duration in seconds.
 			 */
 			secs: number;
 			/**
-			 * Nanoseconds
+			 * Duration in nanoseconds.
 			 */
 			nanos: number;
 		};
 		/**
-		 * Smtp details used for debugging, such as which method is used.
+		 * SMTP details used for debugging, including the verification method.
 		 */
 		DebugDetailsSmtp: {
 			verif_method?: components['schemas']['VerifMethod'];
 		};
 		/**
-		 * The verification method used for the email.
+		 * The method used for email verification.
 		 */
 		VerifMethod: {
 			/**
-			 * The method used to perform the email verification
+			 * The method used for the email verification.
 			 */
 			type: 'Smtp' | 'Headless' | 'Api' | 'Skipped';
+		};
+		/**
+		 * Optional webhook configuration for sending email verification results during bulk verification.
+		 */
+		TaskWebhook: { on_each_email?: components['schemas']['Webhook'] };
+		/**
+		 * Configuration for a webhook to receive email verification results. The method will be POST, and the body will contain the email verification response.
+		 */
+		Webhook: {
 			/**
-			 * If `type` is `SmtpConnection`, the hostname that Reacher connected to.
+			 * The URL to send the email verification results to.
 			 */
-			host?: string;
-			/**
-			 * If `type` is `SmtpConnection`, the port that Reacher connected to.
-			 */
-			port?: number;
+			url: string;
+			extra?: { [key: string]: any };
 		};
 	};
 }

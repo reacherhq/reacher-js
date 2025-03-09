@@ -6,10 +6,10 @@ import { components } from './types';
 const l = debug('reacher:single');
 
 // These small type hacks are for generating nice documentation.
-type ICheckEmailInput = components['schemas']['CheckEmailInput'];
+type ICheckEmailRequest = components['schemas']['CheckEmailRequest'];
 type ICheckEmailOutput = components['schemas']['CheckEmailOutput'];
 // eslint-disable-next-line @typescript-eslint/no-empty-interface
-export interface CheckEmailInput extends ICheckEmailInput {}
+export interface CheckEmailRequest extends ICheckEmailRequest {}
 // eslint-disable-next-line @typescript-eslint/no-empty-interface
 export interface CheckEmailOutput extends ICheckEmailOutput {}
 
@@ -41,7 +41,7 @@ export interface CheckSingleOptions {
  * @param options - Additional options for making the API call.
  */
 export function checkSingle(
-	input: CheckEmailInput,
+	input: CheckEmailRequest,
 	options: CheckSingleOptions
 ): Promise<CheckEmailOutput> {
 	l('Processing email %s', input.to_email);
